@@ -45,8 +45,8 @@ def getPossibleGamesTotal():
         for line in file:
             game = parseGame(line)
             game_id = parseGameId(line)
-            gameTurns = parseGameTurns(game)
-            if gameIsValid(gameTurns) == True:
+            game_turns = parseGameTurns(game)
+            if gameIsValid(game_turns) == True:
                 total += game_id
     return total
 
