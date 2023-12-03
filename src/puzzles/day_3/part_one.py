@@ -57,10 +57,6 @@ def getEnginePartSum():
                         part_numbers.append(value)
                         k += 1
                         continue
-                    if createKey(j, k) in symbol_spots:
-                        part_numbers.append(value)
-                        k += 1
-                        continue
                     if createKey(up, k) in symbol_spots:
                         part_numbers.append(value)
                         k += 1
