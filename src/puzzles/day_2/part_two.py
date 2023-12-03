@@ -34,7 +34,7 @@ def getMinimumPowerSet(turns):
 
 def getMinimumCubePowerSet():
     total = 0
-    with open("src/input/input_day_two.txt") as file:
+    with open("src/input/day_two.txt") as file:
         for line in file:
             game = parseGame(line)
             game_turns = parseGameTurns(game)
