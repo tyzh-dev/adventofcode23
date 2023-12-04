@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 import re
 
 
@@ -19,21 +19,15 @@ class NumberSpot:
 class SymbolSpot:
     row: int
     index: int
-    adjacent_parts: list = field(default_factory=list)
-
-    def calculateGearRatio(self):
-        if len(self.adjacent_parts) != 2:
-            return -1
-        return self.adjacent_parts[0].number * self.adjacent_parts[1].number
 
 
-def getGearRatioSum():
-    number_spots = {}
+def getEnginePartSum():
     symbol_spots = {}
-    gear_ratios = []
-    symbol_regex = re.compile(r"(?P<symbol>[*])")
+    number_spots = {}
+    part_numbers = []
+    symbol_regex = re.compile(r"(?P<symbol>[^\d\w.])")
     number_regex = re.compile(r"(?P<number>\d+)")
-    with open("src/input/day_three.txt") as file:
+    with open("src/input/day_3.txt") as file:
         blue_print = file.read()
         blue_print_lines = blue_print.split("\n")
         for i, line in enumerate(blue_print_lines, start=0):
@@ -59,24 +53,21 @@ def getGearRatioSum():
                 k = left
 
                 while k <= right:
-                    row_key = createKey(j, k)
-                    if row_key in symbol_spots:
-                        symbol_spots[row_key].adjacent_parts.append(number_spot)
-                    up_row_key = createKey(up, k)
-                    if up_row_key in symbol_spots:
-                        symbol_spots[up_row_key].adjacent_parts.append(number_spot)
-                    down_row_key = createKey(down, k)
-                    if down_row_key in symbol_spots:
-                        symbol_spots[down_row_key].adjacent_parts.append(number_spot)
-                    if value == 440:
-                        pass
+                    if createKey(j, k) in symbol_spots:
+                        part_numbers.append(value)
+                        k += 1
+                        continue
+                    if createKey(up, k) in symbol_spots:
+                        part_numbers.append(value)
+                        k += 1
+                        continue
+                    if createKey(down, k) in symbol_spots:
+                        part_numbers.append(value)
+                        k += 1
+                        continue
                     k += 1
-        for _, symbol in symbol_spots.items():
-            gear_ratio = symbol.calculateGearRatio()
-            if gear_ratio != -1:
-                gear_ratios.append(gear_ratio)
-    return sum(gear_ratios)
+    return sum(part_numbers)
 
 
 if __name__ == "__main__":
-    print(getGearRatioSum())
+    print(getEnginePartSum())

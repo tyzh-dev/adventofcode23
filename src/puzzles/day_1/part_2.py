@@ -47,7 +47,7 @@ def get_digits(text):
 
 
 def getSum():
-    with open("src/input/day_one.txt") as file:
+    with open("src/input/day_1.txt") as file:
         total = 0
         for line in file:
             digits = get_digits(line)

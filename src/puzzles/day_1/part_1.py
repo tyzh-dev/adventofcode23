@@ -11,7 +11,7 @@ def get_calibration_value(digits):
 
 
 def getSum():
-    with open("lib/input/day_one.txt") as file:
+    with open("lib/input/day_1.txt") as file:
         total = 0
         for line in file:
             digits = get_digits(line)
