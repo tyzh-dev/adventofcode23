@@ -11,9 +11,8 @@ def getScratchCardPoints():
             your_card_numbers = number_regex.findall(scratch_cards[0])
             winning_card_numbers = number_regex.findall(scratch_cards[1])
 
-            matching_numbers = list(
-                set(your_card_numbers).intersection(winning_card_numbers)
-            )
+            matching_numbers = set(your_card_numbers).intersection(winning_card_numbers)
+
             card_points = 0
             for i, _ in enumerate(matching_numbers):
                 if i == 0:
